@@ -51,6 +51,8 @@ namespace MLIntegracion.Controller
                 {
                     var responseText = streamReader.ReadToEnd();
                     Console.WriteLine(responseText);
+                    Conexion.Conexion c = new Conexion.Conexion();
+                    c.EjecutarLog("IGRS_P", "Pedido enviado exitosamente a ML.", "PROCESADO", "P");
 
                     Console.ReadKey();
 
@@ -58,7 +60,8 @@ namespace MLIntegracion.Controller
                 }
             }catch(Exception e)
             {
-                Console.WriteLine(e);
+                Conexion.Conexion c = new Conexion.Conexion();
+                c.EjecutarLog("IGRS_P", e.ToString(), "NO PROCESADO", "P");
                 Console.ReadKey();
             }
         }

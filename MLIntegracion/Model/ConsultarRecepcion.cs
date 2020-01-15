@@ -12,12 +12,14 @@ namespace MLIntegracion.Model
         public string posicion { get; set; }
         public string SKU { get; set; }
         public string descripcion { get; set; }
-        public int cantidadDespachada { get; set; }
-        public int cantidadRecepcion { get; set; }
+        public string cantidadDespachada { get; set; }
+        public string cantidadRecepcion { get; set; }
         public string lote { get; set;}
         public string fechaVencieminto { get; set; }
         public string aliasBodega { get; set; }
         public string fechaRecepcion { get; set; }
+        public string tipoDocRecepcion { get; set; }
+        public string numDocRecepcion { get; set; }
    
     }
 }

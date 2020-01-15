@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,6 @@ namespace MLIntegracion.Conexion
 {
     class Conexion
     {
-        public string query_pedidos;
-        public string query_recepcion;
-        public string query_SP;
 
         public SqlConnection procesadorabd()
         {
@@ -39,6 +37,7 @@ namespace MLIntegracion.Conexion
 
         public string pedidoquery()
         {
+            string query_pedidos;
             query_pedidos = "select '353612' as numero ";
            // query_pedidos = "select distinct Numero from OP_PENDIENTE_OPERATIVA_2020_v2 where CajasPendientes > 0 and LineaProducto = 'CHOCOLATES PREMIUM'"; 
             return query_pedidos; 
@@ -46,9 +45,36 @@ namespace MLIntegracion.Conexion
 
         public string insercion_ML()
         {
+            string query_SP;
             query_SP ="SP_MLInsercion";
-            // query_pedidos = "select distinct Numero from OP_PENDIENTE_OPERATIVA_2020_v2 where CajasPendientes > 0 and LineaProducto = 'CHOCOLATES PREMIUM'"; 
             return query_SP;
+        }
+
+        public string recepcionquery()
+        {
+            string query_recepcion;
+            query_recepcion = "h";
+            return query_recepcion; 
+        }
+        public string insercionLog()
+        {
+            string query_SP_Log;
+            query_SP_Log = "SP_InsercionLog";
+            return query_SP_Log; 
+
+        }
+
+        public void EjecutarLog (string documento, string info, string estado, string tipo)
+        {
+            using (procesadora_analisis())
+            {
+                SqlCommand cmd = new SqlCommand(insercionLog(), procesadora_analisis());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@documento", SqlDbType.VarChar).Value = documento;
+                cmd.Parameters.Add("@info", SqlDbType.VarChar).Value = info;
+                cmd.Parameters.Add("@estado", SqlDbType.VarChar).Value = estado;
+                cmd.Parameters.Add("@tipo", SqlDbType.VarChar).Value = tipo;
+            }
         }
     }
 }

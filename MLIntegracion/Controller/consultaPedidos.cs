@@ -33,17 +33,24 @@ namespace MLIntegracion.Controller
                 streamWriter.Write(json_script);
                 streamWriter.Flush();
             }
-
-            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var responseText = streamReader.ReadToEnd();
-                Console.WriteLine(responseText);
-                Results(responseText);
-                Console.ReadKey();
-
-
+            try {
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var responseText = streamReader.ReadToEnd();
+                    Console.WriteLine(responseText);
+                    Conexion.Conexion c = new Conexion.Conexion();
+                    c.EjecutarLog(pd.documento, "Documento(" + pd.documento + ") consultado exitosamente.", "PROCESADO", "P");
+                    Results(responseText);
+                    Console.ReadKey();
+                }
             }
+            catch(Exception e)
+            {
+                Conexion.Conexion c = new Conexion.Conexion();
+                c.EjecutarLog(pd.documento, e.ToString(), "NO PROCESADO", "P");
+            }
+
         }
 
         public void obtenerDocumento()
