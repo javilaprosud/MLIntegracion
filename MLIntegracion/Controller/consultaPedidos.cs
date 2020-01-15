@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -37,6 +39,8 @@ namespace MLIntegracion.Controller
             {
                 var responseText = streamReader.ReadToEnd();
                 Console.WriteLine(responseText);
+                Results(responseText);
+                Console.ReadKey();
 
 
             }
@@ -56,8 +60,67 @@ namespace MLIntegracion.Controller
                 {
                     foreach (DataColumn dc in dt.Columns)
                     {
-                        consultaDocumento(row[dc].ToString()); 
+                        consultaDocumento(row[dc].ToString());
                     }
+                }
+
+            }
+        }
+
+        public void Results(string json)
+        {
+
+            Conexion.Conexion con = new Conexion.Conexion();
+            Model.ConsultarPedido icp = new Model.ConsultarPedido();
+            dynamic data = JObject.Parse(json);
+            icp.documento = data.Documento;
+            var jsonLinq = JObject.Parse(json);
+            var srcArray = jsonLinq.Descendants().Where(d => d is JArray).First();
+            var trgArray = new JArray();
+            foreach (JObject row in srcArray.Children<JObject>())
+            {
+                var cleanRow = new JObject();
+                foreach (JProperty column in row.Properties())
+                {
+                    if (column.Value is JValue)
+                    {
+
+                        cleanRow.Add(column.Name, column.Value);
+                    }
+                }
+
+                trgArray.Add(cleanRow);
+            }
+
+            DataTable dt = JsonConvert.DeserializeObject<DataTable>(trgArray.ToString());
+
+            foreach (DataRow row in dt.Rows)
+            {
+                icp.posicion = row[0].ToString();
+                icp.SKU = row[1].ToString();
+                icp.descripcion = row[2].ToString();
+                icp.cantSolicitada = row[3].ToString();
+                icp.cantidadPicking = row[4].ToString();
+                icp.Lote = row[5].ToString();
+                icp.fechaVencimiento = row[6].ToString();
+                icp.aliasBodega = row[7].ToString();
+                icp.fechaPicking = row[8].ToString();
+
+                using (con.procesadorabd())
+                {
+                    SqlCommand cmd = new SqlCommand(con.insercion_ML(), con.procesadorabd());
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@documento", SqlDbType.VarChar).Value = icp.documento;
+                    cmd.Parameters.Add("@posicion", SqlDbType.VarChar).Value = icp.posicion;
+                    cmd.Parameters.Add("@sku", SqlDbType.VarChar).Value = icp.SKU;
+                    cmd.Parameters.Add("@descripcion", SqlDbType.VarChar).Value = icp.descripcion;
+                    cmd.Parameters.Add("@cantidad_sol", SqlDbType.VarChar).Value = icp.cantSolicitada;
+                    cmd.Parameters.Add("@cantidad_pick", SqlDbType.VarChar).Value = icp.cantidadPicking;
+                    cmd.Parameters.Add("@lote", SqlDbType.VarChar).Value = icp.Lote;
+                    cmd.Parameters.Add("@fchven", SqlDbType.VarChar).Value = icp.fechaVencimiento;
+                    cmd.Parameters.Add("@alias", SqlDbType.VarChar).Value = icp.aliasBodega;
+                    cmd.Parameters.Add("@fchpicking", SqlDbType.VarChar).Value = icp.fechaPicking;
+                    cmd.ExecuteNonQuery();
                 }
 
             }

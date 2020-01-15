@@ -11,7 +11,10 @@ namespace MLIntegracion
         static void Main(string[] args)
         {
             Controller.ingresoPedido ip = new Controller.ingresoPedido();
-            ip.ingresarPedido();
+            //ip.ingresarPedido();
+
+            Controller.consultaPedidos cp = new Controller.consultaPedidos();
+            cp.obtenerDocumento();
         }
     }
 }

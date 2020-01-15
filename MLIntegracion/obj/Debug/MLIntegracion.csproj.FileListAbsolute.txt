@@ -5,3 +5,6 @@ C:\Users\Jonathan Avila\Documents\Visual Studio 2017\projects\MLIntegracion\MLIn
 C:\Users\Jonathan Avila\Documents\Visual Studio 2017\projects\MLIntegracion\MLIntegracion\obj\Debug\MLIntegracion.csproj.CoreCompileInputs.cache
 C:\Users\Jonathan Avila\Documents\Visual Studio 2017\projects\MLIntegracion\MLIntegracion\obj\Debug\MLIntegracion.exe
 C:\Users\Jonathan Avila\Documents\Visual Studio 2017\projects\MLIntegracion\MLIntegracion\obj\Debug\MLIntegracion.pdb
+C:\Users\Jonathan Avila\Documents\Visual Studio 2017\projects\MLIntegracion\MLIntegracion\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Jonathan Avila\Documents\Visual Studio 2017\projects\MLIntegracion\MLIntegracion\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Jonathan Avila\Documents\Visual Studio 2017\projects\MLIntegracion\MLIntegracion\obj\Debug\MLIntegracion.csproj.CopyComplete

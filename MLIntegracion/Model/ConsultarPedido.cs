@@ -12,8 +12,8 @@ namespace MLIntegracion.Model
         public string posicion { get; set; }
         public string SKU { get; set; }
         public string descripcion { get; set; }
-        public int cantSolicitada { get; set; }
-        public int cantidadPicking { get; set; }
+        public string cantSolicitada { get; set; }
+        public string cantidadPicking { get; set; }
         public string Lote { get; set; }
         public string fechaVencimiento { get; set; }
         public string aliasBodega { get; set; }
