@@ -51,7 +51,7 @@ namespace MLIntegracion.Controller
                         Conexion.Conexion c = new Conexion.Conexion();
                         c.EjecutarLog(rc.documento, "Documento(" + rc.documento + ") sin datos.", "SIN DATOS", "R");
                     }
-                    Console.ReadKey();
+                  //  Console.ReadKey();
                 }
             }
             catch(Exception e)
@@ -62,10 +62,10 @@ namespace MLIntegracion.Controller
             }
 
         }
-
         public void obtenerDocumento()
         {
             Conexion.Conexion conn = new Conexion.Conexion();
+            conn.SP_Abastecimiento();
             DataTable dt = new DataTable();
             using (conn.procesadorabd())
             {

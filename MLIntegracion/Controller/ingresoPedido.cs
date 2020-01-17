@@ -54,7 +54,7 @@ namespace MLIntegracion.Controller
                     Conexion.Conexion c = new Conexion.Conexion();
                     c.EjecutarLog("IGRS_P", "Pedido enviado exitosamente a ML.", "PROCESADO", "P");
 
-                    Console.ReadKey();
+                   // Console.ReadKey();
 
 
                 }

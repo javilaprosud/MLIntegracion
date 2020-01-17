@@ -38,8 +38,8 @@ namespace MLIntegracion.Conexion
         public string pedidoquery()
         {
             string query_pedidos;
-            query_pedidos = "select '353612' as numero ";
-           // query_pedidos = "select distinct Numero from OP_PENDIENTE_OPERATIVA_2020_v2 where CajasPendientes > 0 and LineaProducto = 'CHOCOLATES PREMIUM'"; 
+            //query_pedidos = "select '353612' as numero ";
+            query_pedidos = "select distinct Numero from OP_PENDIENTE_OPERATIVA_24M where  Cod_Producto like '%CHOC%' and Cod_Producto like '%LINDT%' and CajasPendientes > 0"; 
             return query_pedidos; 
         }
 
@@ -53,7 +53,7 @@ namespace MLIntegracion.Conexion
         public string recepcionquery()
         {
             string query_recepcion;
-            query_recepcion = "select '13174' as numero ";
+            query_recepcion = "SELECT distinct PF_NRO FROM TB_ABASTECIMIENTO_temp where PF_ProdCodigo like '%CHOC%' and PF_ProdCodigo like '%LINDT%'";
             return query_recepcion; 
         }
         public string insercionLog()
@@ -82,6 +82,26 @@ namespace MLIntegracion.Conexion
                 cmd.Parameters.Add("@tipo", SqlDbType.VarChar).Value = tipo;
                 cmd.ExecuteNonQuery();
             }
+        }
+
+       public void SP_Abastecimiento()
+        {
+            SqlCommand cmd = new SqlCommand("SP_COMPRAS_DISPO_PF", procesadorabd());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@tiempo", SqlDbType.VarChar).Value = "1";
+            cmd.Parameters.Add("@destino", SqlDbType.VarChar).Value = "T";
+            cmd.Parameters.Add("@periodos", SqlDbType.VarChar).Value = "M";
+            cmd.ExecuteNonQuery();
+        }
+
+        public void SP_OPPendientes()
+        {
+            SqlCommand cmd = new SqlCommand("SP_OP_PENDIENTE_OPERATIVA_2", procesadorabd());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@tiempo", SqlDbType.VarChar).Value = "1";
+            cmd.Parameters.Add("@destino", SqlDbType.VarChar).Value = "1";
+            cmd.Parameters.Add("@periodos", SqlDbType.VarChar).Value = "T";
+            cmd.ExecuteNonQuery();
         }
     }
 }

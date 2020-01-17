@@ -50,7 +50,7 @@ namespace MLIntegracion.Controller
                         Conexion.Conexion c = new Conexion.Conexion();
                         c.EjecutarLog(pd.documento, "Documento(" + pd.documento + ") sin datos.", "SIN DATOS", "P");
                     }
-                    Console.ReadKey();
+                   // Console.ReadKey();
                 }
             }
             catch(Exception e)
@@ -64,6 +64,7 @@ namespace MLIntegracion.Controller
         public void obtenerDocumento()
         {
             Conexion.Conexion conn = new Conexion.Conexion();
+            conn.SP_OPPendientes();
             DataTable dt = new DataTable();
             using (conn.procesadorabd())
             {
