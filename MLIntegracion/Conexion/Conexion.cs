@@ -53,7 +53,7 @@ namespace MLIntegracion.Conexion
         public string recepcionquery()
         {
             string query_recepcion;
-            query_recepcion = "h";
+            query_recepcion = "select '13174' as numero ";
             return query_recepcion; 
         }
         public string insercionLog()
@@ -62,6 +62,12 @@ namespace MLIntegracion.Conexion
             query_SP_Log = "SP_InsercionLog";
             return query_SP_Log; 
 
+        }
+        public string insercion_ML_Rep()
+        {
+            string query_SP;
+            query_SP = "SP_MLInsercion_Rep";
+            return query_SP;
         }
 
         public void EjecutarLog (string documento, string info, string estado, string tipo)
@@ -74,6 +80,7 @@ namespace MLIntegracion.Conexion
                 cmd.Parameters.Add("@info", SqlDbType.VarChar).Value = info;
                 cmd.Parameters.Add("@estado", SqlDbType.VarChar).Value = estado;
                 cmd.Parameters.Add("@tipo", SqlDbType.VarChar).Value = tipo;
+                cmd.ExecuteNonQuery();
             }
         }
     }

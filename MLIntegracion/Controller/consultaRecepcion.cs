@@ -40,9 +40,17 @@ namespace MLIntegracion.Controller
                    
                     var responseText = streamReader.ReadToEnd();
                     Console.WriteLine(responseText);
-                    Conexion.Conexion c = new Conexion.Conexion();
-                    c.EjecutarLog(rc.documento, "Documento(" + rc.documento + ") consultado exitosamente.", "PROCESADO", "R");
-                    Results(responseText);
+                    if (responseText != "")
+                    {
+                        Results(responseText);
+                        Conexion.Conexion c = new Conexion.Conexion();
+                        c.EjecutarLog(rc.documento, "Documento(" + rc.documento + ") consultado exitosamente.", "PROCESADO", "R");
+                    }
+                    else
+                    {
+                        Conexion.Conexion c = new Conexion.Conexion();
+                        c.EjecutarLog(rc.documento, "Documento(" + rc.documento + ") sin datos.", "SIN DATOS", "R");
+                    }
                     Console.ReadKey();
                 }
             }
@@ -119,7 +127,7 @@ namespace MLIntegracion.Controller
 
                 using (con.procesadorabd())
                 {
-                    SqlCommand cmd = new SqlCommand(con.insercion_ML(), con.procesadorabd());
+                    SqlCommand cmd = new SqlCommand(con.insercion_ML_Rep(), con.procesadorabd());
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@documento", SqlDbType.VarChar).Value = icp.documento;
                     cmd.Parameters.Add("@tipodoc", SqlDbType.VarChar).Value = icp.tipoDocRecepcion;

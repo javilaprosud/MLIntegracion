@@ -39,9 +39,17 @@ namespace MLIntegracion.Controller
                 {
                     var responseText = streamReader.ReadToEnd();
                     Console.WriteLine(responseText);
-                    Conexion.Conexion c = new Conexion.Conexion();
-                    c.EjecutarLog(pd.documento, "Documento(" + pd.documento + ") consultado exitosamente.", "PROCESADO", "P");
-                    Results(responseText);
+                    if (responseText != "")
+                    {
+                        Results(responseText);
+                        Conexion.Conexion c = new Conexion.Conexion();
+                        c.EjecutarLog(pd.documento, "Documento(" + pd.documento + ") consultado exitosamente.", "PROCESADO", "P");
+                    }
+                    else
+                    {
+                        Conexion.Conexion c = new Conexion.Conexion();
+                        c.EjecutarLog(pd.documento, "Documento(" + pd.documento + ") sin datos.", "SIN DATOS", "P");
+                    }
                     Console.ReadKey();
                 }
             }

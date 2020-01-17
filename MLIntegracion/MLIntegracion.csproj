@@ -49,6 +49,7 @@
     <Compile Include="Conexion\Conexion.cs" />
     <Compile Include="Controller\consultaPedidos.cs" />
     <Compile Include="Controller\consultaRecepcion.cs" />
+    <Compile Include="Controller\ingresoRecepcion.cs" />
     <Compile Include="Controller\ingresoPedido.cs" />
     <Compile Include="Model\ConsultarPedido.cs" />
     <Compile Include="Model\ConsultarRecepcion.cs" />
