@@ -14,8 +14,8 @@ namespace MLIntegracion.Model
 
         public IngresarRecepcion()
         {
-            this.PATH = @"C:\MLIntegracion\Recepcion";
-            this.PATHProcesado = @"C:\MLIntegracion\Recepcion\Procesados";
+            this.PATH = @"\\172.16.200.5\MLIntegracion\Recepcion";
+            this.PATHProcesado = @"\\172.16.200.5\MLIntegracion\Recepcion\Procesados";
         }
     }
 }

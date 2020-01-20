@@ -14,8 +14,8 @@ namespace MLIntegracion.Model
 
         public IngresarPedido()
         {
-            this.PATH = @"C:\MLIntegracion\Pedidos"; 
-            this.PATHProcesado = @"C:\MLIntegracion\Pedidos\Procesados";
+            this.PATH = @"\\172.16.200.5\MLIntegracion\Pedidos"; 
+            this.PATHProcesado = @"\\172.16.200.5\MLIntegracion\Pedidos\Procesados";
         }
     }
 }

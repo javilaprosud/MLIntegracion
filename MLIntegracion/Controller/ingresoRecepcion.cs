@@ -23,11 +23,13 @@ namespace MLIntegracion.Controller
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
+                string archivo_origen = "";
+                string archivo_destino = "";
                 DirectoryInfo di = new DirectoryInfo(rc.PATH);
 
                 foreach (var fi in di.GetFiles())
                 {
-                    string archivo_origen = rc.PATH + "\\" + fi.Name;
+                    archivo_origen = rc.PATH + "\\" + fi.Name;
 
                     using (StreamReader jsonStream = File.OpenText(archivo_origen))
                     {
@@ -37,33 +39,35 @@ namespace MLIntegracion.Controller
 
                     streamWriter.Write(rc.jsonIPedido);
                     streamWriter.Flush();
-                    string archivo_destino = rc.PATHProcesado + "\\" + fi.Name;
+                    archivo_destino = rc.PATHProcesado + "\\" + fi.Name;
 
-                    System.IO.File.Move(archivo_origen, archivo_destino);
 
                 }
-            }
-            try
-            {
-                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                try
                 {
-                    var responseText = streamReader.ReadToEnd();
-                    Console.WriteLine(responseText);
-                    Conexion.Conexion c = new Conexion.Conexion();
-                    c.EjecutarLog("IGRS_R", "Recepcion enviada exitosamente a ML.", "PROCESADO", "R");
+                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        var responseText = streamReader.ReadToEnd();
+                        Console.WriteLine(responseText);
+                        Conexion.Conexion c = new Conexion.Conexion();
+                        c.EjecutarLog("IGRS_R", "Recepcion enviada exitosamente a ML.", "PROCESADO", "R");
 
-                   // Console.ReadKey();
-
-
+                        // Console.ReadKey();
+                    }
                 }
+                catch (Exception e)
+                {
+                    Conexion.Conexion c = new Conexion.Conexion();
+                    c.EjecutarLog("IGRS_R", e.ToString(), "NO PROCESADO", "R");
+                    Console.ReadKey();
+                }
+
+
+                System.IO.File.Move(archivo_origen, archivo_destino);
+
             }
-            catch (Exception e)
-            {
-                Conexion.Conexion c = new Conexion.Conexion();
-                c.EjecutarLog("IGRS_R", e.ToString(), "NO PROCESADO", "R");
-                Console.ReadKey();
-            }
+
         }
     }
 }
