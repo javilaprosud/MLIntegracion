@@ -51,7 +51,7 @@ namespace MLIntegracion.Controller
                         Conexion.Conexion c = new Conexion.Conexion();
                         c.EjecutarLog(rc.documento, "Documento(" + rc.documento + ") sin datos.", "SIN DATOS", "R");
                     }
-                  //  Console.ReadKey();
+                  
                 }
             }
             catch(Exception e)
@@ -82,6 +82,7 @@ namespace MLIntegracion.Controller
                 }
 
             }
+            Console.ReadKey();
         }
 
         public void Results(string json)

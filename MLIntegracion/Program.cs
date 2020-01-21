@@ -34,8 +34,8 @@ namespace MLIntegracion
                 }
             }
 
-            //Controller.ingresoRecepcion ir = new Controller.ingresoRecepcion();
-            //ir.ingresarRecepcion();
+            ////Controller.ingresoRecepcion ir = new Controller.ingresoRecepcion();
+            ////ir.ingresarRecepcion();
         }
     }
 }

@@ -52,7 +52,8 @@ namespace MLIntegracion.Controller
                         Console.WriteLine(responseText);
                         Conexion.Conexion c = new Conexion.Conexion();
                         c.EjecutarLog("IGRS_R", "Recepcion enviada exitosamente a ML.", "PROCESADO", "R");
-                        Thread.Sleep(10000);
+                        Console.WriteLine("PROCESADO");
+                        Thread.Sleep(3000);
 
                         //Console.ReadKey();
                     }
@@ -61,10 +62,18 @@ namespace MLIntegracion.Controller
                 {
                     Conexion.Conexion c = new Conexion.Conexion();
                     c.EjecutarLog("IGRS_R", e.ToString(), "NO PROCESADO", "R");
-                    Thread.Sleep(10000);
+                    Console.WriteLine("NO PROCESADO");
+                    Thread.Sleep(3000);
                     // Console.ReadKey();
                 }
-                System.IO.File.Move(archivo_origen, archivo_destino);
+                try
+                {
+                    System.IO.File.Move(archivo_origen, archivo_destino);
+                }
+                catch (Exception e)
+                {
+
+                }
             }
 
         }

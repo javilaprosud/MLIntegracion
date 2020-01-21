@@ -16,6 +16,7 @@ namespace MLIntegracion.Model
         {
             this.PATH = @"\\172.16.200.5\MLIntegracion\Pedidos"; 
             this.PATHProcesado = @"\\172.16.200.5\MLIntegracion\Pedidos\Procesados";
+
         }
     }
 }
