@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MLIntegracion.Controller
@@ -21,13 +22,13 @@ namespace MLIntegracion.Controller
             httpWebRequest.Headers.Add("APIKey", inte.APIKey);
             httpWebRequest.Method = "POST";
 
-            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-            {
-                string archivo_origen = "";
-                string archivo_destino = "";
-                DirectoryInfo di = new DirectoryInfo(rc.PATH);
+            string archivo_origen = "";
+            string archivo_destino = "";
+            DirectoryInfo di = new DirectoryInfo(rc.PATH);
 
-                foreach (var fi in di.GetFiles())
+            foreach (var fi in di.GetFiles())
+            {
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
                     archivo_origen = rc.PATH + "\\" + fi.Name;
 
@@ -36,13 +37,11 @@ namespace MLIntegracion.Controller
                         rc.jsonIPedido = jsonStream.ReadToEnd();
                     }
 
-
                     streamWriter.Write(rc.jsonIPedido);
                     streamWriter.Flush();
                     archivo_destino = rc.PATHProcesado + "\\" + fi.Name;
-
-
                 }
+
                 try
                 {
                     var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -52,22 +51,22 @@ namespace MLIntegracion.Controller
                         Console.WriteLine(responseText);
                         Conexion.Conexion c = new Conexion.Conexion();
                         c.EjecutarLog("IGRS_R", "Recepcion enviada exitosamente a ML.", "PROCESADO", "R");
+                        Thread.Sleep(10000);
 
-                        // Console.ReadKey();
+                        //Console.ReadKey();
                     }
                 }
                 catch (Exception e)
                 {
                     Conexion.Conexion c = new Conexion.Conexion();
                     c.EjecutarLog("IGRS_R", e.ToString(), "NO PROCESADO", "R");
-                    Console.ReadKey();
+                    Thread.Sleep(10000);
+                    // Console.ReadKey();
                 }
 
-
-                System.IO.File.Move(archivo_origen, archivo_destino);
-
             }
-
+                System.IO.File.Move(archivo_origen, archivo_destino);
         }
+      
     }
 }

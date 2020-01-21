@@ -39,7 +39,7 @@ namespace MLIntegracion.Conexion
         {
             string query_pedidos;
             //query_pedidos = "select '353612' as numero ";
-            query_pedidos = "select distinct Numero from Prosud_BI.dbo.OP_PENDIENTE_OPERATIVA_24M where Cod_Producto like '%CHOC%' or Cod_Producto like '%LINDT%' and CajasPendientes > 0"; 
+            query_pedidos = "select distinct Numero from Prosud_BI.dbo.OP_PENDIENTE_OPERATIVA_24M where Cod_Producto like '%LN%' and  LineaProducto = 'CHOCOLATES PREMIUM' and CajasPendientes > 0"; 
             return query_pedidos; 
         }
 
@@ -53,7 +53,7 @@ namespace MLIntegracion.Conexion
         public string recepcionquery()
         {
             string query_recepcion;
-            query_recepcion = "SELECT distinct PF_NRO FROM TB_ABASTECIMIENTO_temp where PF_ProdCodigo like '%CHOC%' or PF_ProdCodigo like '%LINDT%'";
+            query_recepcion = "SELECT distinct PF_NRO FROM TB_ABASTECIMIENTO_temp where PF_ProdCodigo like '%CHOC%' or PF_ProdCodigo like '%LINDT%' or PF_ProdCodigo like '%LN%'";
             return query_recepcion; 
         }
         public string insercionLog()
@@ -91,6 +91,7 @@ namespace MLIntegracion.Conexion
             cmd.Parameters.Add("@tiempo", SqlDbType.VarChar).Value = "1";
             cmd.Parameters.Add("@destino", SqlDbType.VarChar).Value = "T";
             cmd.Parameters.Add("@periodos", SqlDbType.VarChar).Value = "M";
+            cmd.CommandTimeout = 0;
             cmd.ExecuteNonQuery();
         }
 
@@ -101,6 +102,7 @@ namespace MLIntegracion.Conexion
             cmd.Parameters.Add("@tiempo", SqlDbType.VarChar).Value = "1";
             cmd.Parameters.Add("@agno", SqlDbType.VarChar).Value = "2020";
             cmd.Parameters.Add("@destino", SqlDbType.VarChar).Value = "T";
+            cmd.CommandTimeout = 0; 
             cmd.ExecuteNonQuery();
         }
     }
