@@ -33,6 +33,9 @@ namespace MLIntegracion
                     cr.obtenerDocumento();
                 }
             }
+
+            //Controller.ingresoRecepcion ir = new Controller.ingresoRecepcion();
+            //ir.ingresarRecepcion();
         }
     }
 }

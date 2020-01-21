@@ -53,7 +53,7 @@ namespace MLIntegracion.Conexion
         public string recepcionquery()
         {
             string query_recepcion;
-            query_recepcion = "SELECT distinct PF_NRO FROM TB_ABASTECIMIENTO_temp where PF_ProdCodigo like '%CHOC%' or PF_ProdCodigo like '%LINDT%' or PF_ProdCodigo like '%LN%'";
+            query_recepcion = "SELECT distinct PF_NRO FROM PROSUD_BI.dbo.TB_ABASTECIMIENTO_temp where PF_ProdCodigo like '%CHOC%' or PF_ProdCodigo like '%LINDT%' or PF_ProdCodigo like '%LN%'";
             return query_recepcion; 
         }
         public string insercionLog()

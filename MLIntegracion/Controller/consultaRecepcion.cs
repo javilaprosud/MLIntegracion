@@ -140,7 +140,7 @@ namespace MLIntegracion.Controller
                     cmd.Parameters.Add("@lote", SqlDbType.VarChar).Value = icp.lote;
                     cmd.Parameters.Add("@fchven", SqlDbType.VarChar).Value = icp.fechaVencieminto;
                     cmd.Parameters.Add("@alias", SqlDbType.VarChar).Value = icp.aliasBodega;
-                    cmd.Parameters.Add("@fchrecepcion", SqlDbType.VarChar).Value = icp.fechaRecepcion;
+                    cmd.Parameters.Add("@fchrecep", SqlDbType.VarChar).Value = icp.fechaRecepcion;
                     cmd.ExecuteNonQuery();
                 }
 

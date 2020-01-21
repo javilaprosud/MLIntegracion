@@ -18,15 +18,16 @@ namespace MLIntegracion.Controller
 
             Model.IngresarPedido pd = new Model.IngresarPedido();
  
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(inte.URL);
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Headers.Add("APIKey", inte.APIKey);
-            httpWebRequest.Method = "POST";
+
             string archivo_origen = "";
             string archivo_destino = "";
             DirectoryInfo di = new DirectoryInfo(pd.PATH);
             foreach (var fi in di.GetFiles())
             {
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(inte.URL);
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Headers.Add("APIKey", inte.APIKey);
+                httpWebRequest.Method = "POST";
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
                     archivo_origen = pd.PATH + "\\" + fi.Name;
@@ -61,9 +62,9 @@ namespace MLIntegracion.Controller
                     Thread.Sleep(10000);
                     //Console.ReadKey();
                 }
-
+               System.IO.File.Move(archivo_origen, archivo_destino);
             }
-            System.IO.File.Move(archivo_origen, archivo_destino);
+ 
         }
     }
 }
