@@ -82,7 +82,7 @@ namespace MLIntegracion.Controller
                 }
 
             }
-            Console.ReadKey();
+           // Console.ReadKey();
         }
 
         public void Results(string json)
