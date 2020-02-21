@@ -17,6 +17,11 @@ namespace MLIntegracion
                     Controller.ingresoPedido ip = new Controller.ingresoPedido();
                     ip.ingresarPedido();
                 }
+                if (arg == "CS")
+                {
+                    Controller.consultaStock cs = new Controller.consultaStock();
+                    cs.consultaDocumento();
+                }
                 if (arg == "IR")
                 {
                     Controller.ingresoRecepcion ir = new Controller.ingresoRecepcion();

@@ -18,7 +18,7 @@ namespace MLIntegracion.Controller
 
         public void consultaDocumento(string nro)
         {
-            Model.Integracion inte = new Model.Integracion { URL = "http://wikets.no-ip.info:82/Api/ConsultarPedido" };
+            Model.Integracion inte = new Model.Integracion { URL = "http://190.153.223.174:82/Api/ConsultarPedido" };
             Model.ConsultarPedido pd = new Model.ConsultarPedido();
             pd.documento = nro;
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(inte.URL);

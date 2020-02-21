@@ -16,7 +16,7 @@ namespace MLIntegracion.Controller
     {
         public void consultaDocumentoRecepcion(string nro)
         {
-            Model.Integracion inte = new Model.Integracion { URL = "http://wikets.no-ip.info:82/Api/ConsultarRecepcion" };
+            Model.Integracion inte = new Model.Integracion { URL = "http://190.153.223.174:82/Api/ConsultarRecepcion" };
 
             Model.ConsultarRecepcion rc = new Model.ConsultarRecepcion();
             rc.documento = nro;

@@ -50,6 +50,15 @@ namespace MLIntegracion.Conexion
             return query_SP;
         }
 
+
+        public string insercion_MLS()
+        {
+            string query_SP;
+            query_SP = "SP_MLInsercionStock";
+            return query_SP;
+        }
+
+
         public string recepcionquery()
         {
             string query_recepcion;

@@ -13,7 +13,7 @@ namespace MLIntegracion.Controller
     {
         public void ingresarRecepcion()
         {
-            Model.Integracion inte = new Model.Integracion { URL = "http://wikets.no-ip.info:82/Api/IngresarRecepcion" };
+            Model.Integracion inte = new Model.Integracion { URL = "http://190.153.223.174:82/Api/IngresarRecepcion" };
 
             Model.IngresarRecepcion rc = new Model.IngresarRecepcion();
 
@@ -43,6 +43,12 @@ namespace MLIntegracion.Controller
                     archivo_destino = rc.PATHProcesado + "\\" + fi.Name;
                 }
 
+                int numdoc = (fi.Name.IndexOf("_") + 1);
+                string doc2 = fi.Name.Substring(numdoc);
+                int numdoc2 = (doc2.IndexOf("_"));
+
+                string docu = fi.Name.Substring(numdoc, numdoc2);
+
                 try
                 {
                     var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -51,7 +57,7 @@ namespace MLIntegracion.Controller
                         var responseText = streamReader.ReadToEnd();
                         Console.WriteLine(responseText);
                         Conexion.Conexion c = new Conexion.Conexion();
-                        c.EjecutarLog("IGRS_R", "Recepcion enviada exitosamente a ML.", "PROCESADO", "R");
+                        c.EjecutarLog("IGRS_R_" + docu, "Recepcion enviada exitosamente a ML.", "PROCESADO", "R");
                         Console.WriteLine("PROCESADO");
                         Thread.Sleep(3000);
 
@@ -61,7 +67,7 @@ namespace MLIntegracion.Controller
                 catch (Exception e)
                 {
                     Conexion.Conexion c = new Conexion.Conexion();
-                    c.EjecutarLog("IGRS_R", e.ToString(), "NO PROCESADO", "R");
+                    c.EjecutarLog("IGRS_R_" + docu, e.ToString(), "NO PROCESADO", "R");
                     Console.WriteLine("NO PROCESADO");
                     Thread.Sleep(3000);
                     // Console.ReadKey();

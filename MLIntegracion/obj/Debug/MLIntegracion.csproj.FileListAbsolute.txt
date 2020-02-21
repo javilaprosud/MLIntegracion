@@ -8,3 +8,13 @@ C:\Users\Jonathan Avila\Documents\Visual Studio 2017\projects\MLIntegracion\MLIn
 C:\Users\Jonathan Avila\Documents\Visual Studio 2017\projects\MLIntegracion\MLIntegracion\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Jonathan Avila\Documents\Visual Studio 2017\projects\MLIntegracion\MLIntegracion\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Jonathan Avila\Documents\Visual Studio 2017\projects\MLIntegracion\MLIntegracion\obj\Debug\MLIntegracion.csproj.CopyComplete
+C:\Users\maburto\Desktop\MLIntegracion-master\MLIntegracion\bin\Debug\MLIntegracion.exe.config
+C:\Users\maburto\Desktop\MLIntegracion-master\MLIntegracion\bin\Debug\MLIntegracion.exe
+C:\Users\maburto\Desktop\MLIntegracion-master\MLIntegracion\bin\Debug\MLIntegracion.pdb
+C:\Users\maburto\Desktop\MLIntegracion-master\MLIntegracion\bin\Debug\Newtonsoft.Json.dll
+C:\Users\maburto\Desktop\MLIntegracion-master\MLIntegracion\bin\Debug\Newtonsoft.Json.xml
+C:\Users\maburto\Desktop\MLIntegracion-master\MLIntegracion\obj\Debug\MLIntegracion.csproj.CoreCompileInputs.cache
+C:\Users\maburto\Desktop\MLIntegracion-master\MLIntegracion\obj\Debug\MLIntegracion.csproj.CopyComplete
+C:\Users\maburto\Desktop\MLIntegracion-master\MLIntegracion\obj\Debug\MLIntegracion.exe
+C:\Users\maburto\Desktop\MLIntegracion-master\MLIntegracion\obj\Debug\MLIntegracion.pdb
+C:\Users\maburto\Desktop\MLIntegracion-master\MLIntegracion\obj\Debug\MLIntegracion.csprojAssemblyReference.cache
